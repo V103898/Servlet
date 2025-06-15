@@ -7,12 +7,7 @@ import java.io.Reader;
 import java.util.Map;
 import ru.netology.exception.NotFoundException;
 import  com.google.gson.Gson;
-import jakarta.servlet.annotation.ServletSecurity;
-import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
-
 
 @Controller
 public class PostController {
