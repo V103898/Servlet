@@ -1,24 +1,28 @@
+
 package ru.netology.servlet;
+import jakarta.servlet.annotation.ServletSecurity;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import ru.netology.config.AppConfig;
 import ru.netology.controller.PostController;
-import ru.netology.repository.PostRepository;
-import ru.netology.service.PostService;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import java.util.regex.Pattern;
+
 
 public class MainServlet extends HttpServlet {
     private static final String POSTS_PATH = "/api/posts";
     private static final String POSTS_ID_PATH = "/api/posts/\\d+";
+
     private static final Pattern ID_PATTERN = Pattern.compile("/api/posts/(\\d+)");
 
     private PostController controller;
 
     @Override
     public void init() {
-        final var repository = new PostRepository();
-        final var service = new PostService(repository);
-        controller = new PostController(service);
+        var context = new AnnotationConfigApplicationContext(AppConfig.class);
+        controller = context.getBean(PostController.class);
     }
 
     @Override
@@ -54,7 +58,10 @@ public class MainServlet extends HttpServlet {
 
     private long extractId(String path) {
         var matcher = ID_PATTERN.matcher(path);
-        matcher.find();
-        return Long.parseLong(matcher.group(1));
+        if (matcher.find()) {
+            return Long.parseLong(matcher.group(1));
+        } else {
+            throw new IllegalArgumentException("Invalid URL: " + path);
+        }
     }
 }
