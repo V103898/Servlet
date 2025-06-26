@@ -11,17 +11,17 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import java.util.regex.Pattern;
 
 
+
 public class MainServlet extends HttpServlet {
     private static final String POSTS_PATH = "/api/posts";
     private static final String POSTS_ID_PATH = "/api/posts/\\d+";
-
     private static final Pattern ID_PATTERN = Pattern.compile("/api/posts/(\\d+)");
 
     private PostController controller;
 
     @Override
     public void init() {
-        var context = new AnnotationConfigApplicationContext(AppConfig.class);
+        var context = new AnnotationConfigApplicationContext("ru.netology");
         controller = context.getBean(PostController.class);
     }
 

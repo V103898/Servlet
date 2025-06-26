@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 
 @Controller
 public class PostController {
+
     public static final String APPLICATION_JSON = "application/json";
     private final PostService service;
     private final Gson gson = new Gson();
