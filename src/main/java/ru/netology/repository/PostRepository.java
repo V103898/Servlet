@@ -5,7 +5,9 @@ import java.util.Optional;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicLong;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class PostRepository {
     private final Map<Long, Post> posts = new ConcurrentHashMap<>();
     private final AtomicLong counter = new AtomicLong(1); // Start from 1
