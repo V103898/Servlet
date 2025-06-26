@@ -2,11 +2,10 @@ package ru.netology.controller;
 import com.google.gson.Gson;
 import ru.netology.model.Post;
 import ru.netology.service.PostService;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.Reader;
 import java.util.Map;
-
 import ru.netology.exception.NotFoundException;
 
 public class PostController {
