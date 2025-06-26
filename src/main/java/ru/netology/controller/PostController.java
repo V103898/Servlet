@@ -2,14 +2,16 @@ package ru.netology.controller;
 import com.google.gson.Gson;
 import ru.netology.model.Post;
 import ru.netology.service.PostService;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.Reader;
 import java.util.Map;
-
 import ru.netology.exception.NotFoundException;
+import org.springframework.stereotype.Controller;
 
+@Controller
 public class PostController {
+
     public static final String APPLICATION_JSON = "application/json";
     private final PostService service;
     private final Gson gson = new Gson();
