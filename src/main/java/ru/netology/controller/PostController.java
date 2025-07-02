@@ -1,14 +1,12 @@
 package ru.netology.controller;
-import com.google.gson.Gson;
 import org.springframework.web.bind.annotation.*;
 import ru.netology.model.Post;
 import ru.netology.service.PostService;
 import jakarta.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.io.Reader;
+
+import java.io.BufferedReader;
 import java.util.List;
-import java.util.Map;
-import ru.netology.exception.NotFoundException;
+
 @RestController
 @RequestMapping("/api/posts")
 public class PostController {
@@ -19,12 +17,12 @@ public class PostController {
     }
 
     @GetMapping
-    public List<Post> all() {
+    public List<Post> all(HttpServletResponse resp) {
         return service.all();
     }
 
     @GetMapping("/{id}")
-    public Post getById(@PathVariable long id) {
+    public Post getById(@PathVariable long id, HttpServletResponse resp) {
         return service.getById(id);
     }
 
@@ -34,7 +32,10 @@ public class PostController {
     }
 
     @DeleteMapping("/{id}")
-    public void removeById(long id) {
+    public void removeById(long id, HttpServletResponse resp) {
         service.removeById(id);
+    }
+
+    public void save(BufferedReader reader, HttpServletResponse resp) {
     }
 }
